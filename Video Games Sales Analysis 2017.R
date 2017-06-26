@@ -1,4 +1,6 @@
 
+#I got my data from this URL: https://www.kaggle.com/kendallgillies/video-game-sales-and-ratings
+
 #Here I import video game data from January 2017
 videoGameData<-read.table(file="C:/Users/Tom/Desktop/Video_Game_Sales_as_of_Jan_2017.csv",header=T,sep=",",fill = T,quote="")
 
