@@ -4,6 +4,10 @@
 #Here I import video game data from January 2017
 videoGameData<-read.table(file="C:/Users/Tom/Desktop/Video_Game_Sales_as_of_Jan_2017.csv",header=T,sep=",",fill = T,quote="")
 
+#Here I multiplied the user score by 10 so that it would be on a 0-100 scale
+#likw the critic score is.
+videoGameData$User_Score<-videoGameData$User_Score*10
+
 #We look at the head and tail of the data just to see what may be typical
 #values or missing values in our data set
 head(videoGameData)
@@ -19,7 +23,7 @@ completeData<-videoGameData[complete.cases(videoGameData), ]
 #with more similar values highlights trends more accurately.
 first300<-completeData[1:300, ]
 first300
-
+head(first300)
 
 #from eyeballing this plot we can guess that user score and critic score probably 
 #don't correlate, even though I thought that they would
@@ -30,3 +34,4 @@ plot(first300$Critic_Score,first300$User_Score,xlab="Critic Score",ylab="User Sc
 #correlate with each other
 cor(first300$Critic_Score, first300$User_Score)
 
+cov(first300$Critic_Score, first300$User_Score)
