@@ -53,3 +53,13 @@ cor(first300$NA_Sales, first300$JP_Sales)
 #include both in our regression model for predicting Global sales, to prevent
 #multicollinearity.
 
+#below we run a simple regression to see how well North American sales data
+#predicts Global Sales data.
+simpleReg <-lm(first300$Global_Sales ~ first300$NA_Sales, data=first300)
+summary(simpleReg)
+#Global Sales=1.86*NA_Sales+.96103
+#Our adjusted R-squared value is .8797, which means that our model explains 87.97%
+#of the variability of the variable Global sales.
+
+
+
