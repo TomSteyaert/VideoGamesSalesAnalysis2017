@@ -13,9 +13,18 @@ videoGameData$User_Score<-videoGameData$User_Score*10
 head(videoGameData)
 tail(videoGameData)
 
+
 #We take a subset of our data that only includes rows with no missing values,
 #i.e., rows that are complete
 completeData<-videoGameData[complete.cases(videoGameData), ]
+
+#We convert European, North American, and Japan sales to numeric values
+#because they were incorrectly imported as factors.
+completeData$EU_Sales <- as.numeric(as.character(completeData$EU_Sales))
+completeData$NA_Sales <- as.numeric(as.character(completeData$NA_Sales))
+completeData$JP_Sales <- as.numeric(as.character(completeData$JP_Sales))
+
+
 
 #in order to observe this data on a smaller and more manageable scale, I take 
 #a subset of just the first 300 entries of our complete data. Notice that the games
@@ -34,4 +43,13 @@ plot(first300$Critic_Score,first300$User_Score,xlab="Critic Score",ylab="User Sc
 #correlate with each other
 cor(first300$Critic_Score, first300$User_Score)
 
-cov(first300$Critic_Score, first300$User_Score)
+
+cor(first300$NA_Sales, first300$EU_Sales)
+cor(first300$JP_Sales, first300$EU_Sales)
+cor(first300$NA_Sales, first300$JP_Sales)
+
+#after running a few correlations above we see that North America sales and European
+#sales are correlated with each other (correlation coefficient=.785), so we won't
+#include both in our regression model for predicting Global sales, to prevent
+#multicollinearity.
+
